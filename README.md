@@ -50,7 +50,7 @@ ollama serve   # starts the API on http://localhost:11434
 ### 3. Python dependencies
 
 ```bash
-pip install pandas requests numpy
+pip install requests numpy
 ```
 
 ---

@@ -47,7 +47,5 @@ POST_LIMIT_PER_SEARCH = 25
 REQUEST_SLEEP_SECONDS = 5
 
 
-OLLAMA_MODEL = "gemma4:12b"
-
 # Ollama local API endpoint.
 OLLAMA_URL = "http://localhost:11434/api/generate"

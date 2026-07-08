@@ -1,24 +1,26 @@
 """
 qwen_mapper.py
 
-Pipeline per post:
-  1. Extraction: send post text to Ollama (qwen3) — model freely identifies
-     adverse effects using its clinical knowledge.
-     Output per match: ctcae_described | grade | evidence | likely_relation | confidence
-  2. Normalization: qwen3 outputs standard CTCAE terminology directly,
-     so ctcae_normalized mirrors ctcae_described.
+Two-stage adverse event extraction pipeline:
 
-qwen3-specific:
-  - think: True uses qwen3's reasoning mode
-  - /no_think prefix in prompt disables thinking for that call
-  - Recommended sampling: temperature=0.6, top_p=0.95, top_k=20 (thinking mode)
+  Stage 1 — Extraction (Qwen3):
+    Reads each Reddit post and extracts adverse event descriptions in
+    free-form patient language.
+    Output per match: ctcae_described | grade | evidence | likely_relation | confidence
+
+  Stage 2 — CTCAE Normalization (Gemma4):
+    Embeds the extracted term, retrieves top-10 candidate CTCAE v6 terms
+    by cosine similarity, then uses Gemma4 to select the best match,
+    assign a CTCAE grade (1-5), and report confidence.
 
 Output: ctcae_results.csv
-Checkpoint: ctcae_checkpoint.txt
+Checkpoint: ctcae_checkpoint.txt  (resumable — re-run to continue)
 
 Usage:
     python qwen_mapper.py
-    python qwen_mapper.py --limit 3
+    python qwen_mapper.py --limit 3     # test on first 3 posts
+    python qwen_mapper.py --restart     # clear output and start fresh
+    python qwen_mapper.py --debug       # print live model output
 """
 
 import argparse
