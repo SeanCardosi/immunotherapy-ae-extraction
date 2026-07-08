@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Embedding cache (large binary, regenerated on first run)
+*.pkl
+
+# Pipeline checkpoint (transient)
+ctcae_checkpoint.txt
+
+# Old/experimental files
+Old/
+output/
+debug_prompts/
+ctcae_mapper.py
+old_mapper.py
+storage.py
+storage2.py
+storage3.py
+storage4.py
+storage5.py
+storage6.py
+stroage7.py
+compute_f1.py
+gold_standard_v2.csv
+
+# Paper files (submitted separately via Overleaf)
+immunotherapy_ae_paper.docx
+immunotherapy_ae_paper.tex
