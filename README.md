@@ -178,7 +178,6 @@ MAE            : 0.574
 | Parameter | Default | Description |
 |-----------|---------|-------------|
 | `OLLAMA_URL` | `http://localhost:11434/api/generate` | Ollama API endpoint |
-| `OLLAMA_MODEL` | `gemma4:12b` | Model used by the old `ctcae_mapper.py` (not used by `qwen_mapper.py`) |
 | `SUBREDDITS` | See file | Subreddits searched during data collection |
 | `SEARCH_TERMS` | See file | Immunotherapy drug names and modalities |
 | `DATE_WINDOWS` | 2023–2026 | Date ranges for post collection |
